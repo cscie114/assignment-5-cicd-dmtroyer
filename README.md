@@ -1,3 +1,18 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/MnOQKepF)
-# assignment-5-cicd
-This is the (mostly) empty starter repository for assignment 5, in which we practice the fundamentals of CI/CD.
+# Bronies Central
+
+David Troyer's submission for CSCI E-114 Assignment 5
+
+## Configuration
+
+You must create a `.env` file in the top level of this directory with a valid API key for the [OMDb API](https://www.omdbapi.com) named `OMDB_API_KEY`. For example:
+
+```properties
+OMDB_API_KEY=1234abcd
+```
+
+## Run
+
+This is a standard [Gatsby](https://www.gatsbyjs.com) project.
+
+1. Run `npm install` to install dependencies.
+2. Run `npm run develop` to start a development server.

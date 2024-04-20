@@ -1,4 +1,5 @@
 import * as React from "react"
+import PropTypes from "prop-types"
 import { graphql } from "gatsby"
 import Movie from "../components/movie"
 import "../styles/global.css"
@@ -10,7 +11,7 @@ const IndexPage = ({ data }) => {
         <h1>Bronies Central</h1>
       </header>
       <main>
-        <div class="movies">
+        <div className="movies">
         {
           data.allMovie.nodes.map(movie => (
             <Movie key={movie.imdbID} movie={movie} />
@@ -36,6 +37,10 @@ export const query = graphql`
     }
   }
 `
+
+IndexPage.propTypes = {
+  data: PropTypes.object.isRequired
+}
 
 export default IndexPage
 
