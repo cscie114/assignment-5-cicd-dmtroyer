@@ -1,4 +1,4 @@
-name: build
+name: Build and Deploy
 
 on:
   push:
@@ -19,3 +19,13 @@ jobs:
     - run: npm run build
       env:
         OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
+    - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v3.0
+      with:
+        publish-dir: './public'
+        production-branch: main
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "Deploy from GitHub Actions"
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
