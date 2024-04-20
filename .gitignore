@@ -1,0 +1,5 @@
+node_modules/
+.cache/
+.eleventy-cache/
+public
+.env
