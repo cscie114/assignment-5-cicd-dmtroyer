@@ -1,4 +1,4 @@
-const fetch = require('node-fetch').default;
+const fetch = require('node-fetch');
 
 export default async () => {
   const randomId = Math.floor(Math.random() * 100) + 1;
