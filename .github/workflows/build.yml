@@ -16,17 +16,11 @@ jobs:
     - run: npm ci
     - run: npm run lint
     - run: npm run test
-    - run: npm run build
-      env:
-        OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
-    - name: Deploy to Netlify
-      uses: nwtgck/actions-netlify@v3.0
+    - name: Build and Deploy to Netlify
+      uses: netlify/actions/cli@master
       with:
-        publish-dir: './public'
-        functions-dir: './netlify/functions'
-        production-branch: main
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        deploy-message: "Deploy from GitHub Actions"
+        args: deploy --build --prod
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
