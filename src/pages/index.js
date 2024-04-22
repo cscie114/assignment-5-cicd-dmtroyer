@@ -1,28 +1,21 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { graphql } from "gatsby"
+import Layout from "../components/layout"
 import Movie from "../components/movie"
 import "../styles/global.css"
 
 const IndexPage = ({ data }) => {
   return (
-    <>
-      <header>
-        <h1>Bronies Central</h1>
-      </header>
-      <main>
-        <div className="movies">
-        {
-          data.allMovie.nodes.map(movie => (
-            <Movie key={movie.imdbID} movie={movie} />
-          ))
-        }
-        </div>
-      </main>
-      <footer>
-        <p>CSCI E-114 Assignment 5 // David Troyer</p>
-      </footer>
-    </>
+    <Layout>
+      <div className="movies">
+      {
+        data.allMovie.nodes.map(movie => (
+          <Movie key={movie.imdbID} movie={movie} />
+        ))
+      }
+      </div>
+    </Layout>
   )
 }
 
@@ -44,4 +37,4 @@ IndexPage.propTypes = {
 
 export default IndexPage
 
-export const Head = () => <title>Bronies Home Page</title>
+export const Head = () => <title>Bronies - Home Page</title>

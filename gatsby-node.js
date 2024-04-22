@@ -10,25 +10,28 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
     apikey: process.env.OMDB_API_KEY,
   }).toString();
 
-  const response = await fetch(movieUrl);
-  const data = await response.json();
-
-  data.Search.forEach(movie => {
-    const nodeContent = JSON.stringify(movie)
-
-    const nodeMeta = {
-      id: createNodeId(`movie-${movie.imdbID}`),
-      parent: null,
-      children: [],
-      internal: {
-        type: `Movie`,
-        mediaType: `application/json`,
-        content: nodeContent,
-        contentDigest: createContentDigest(movie)
+  let data;
+  try {
+    const response = await fetch(movieUrl);
+    data = await response.json();
+  } catch (error) {
+    console.error(error);
+  } finally {
+    data.Search.forEach(movie => {
+      const nodeMeta = {
+        id: createNodeId(`movie-${movie.imdbID}`),
+        parent: null,
+        children: [],
+        internal: {
+          type: `Movie`,
+          mediaType: `application/json`,
+          content: JSON.stringify(movie),
+          contentDigest: createContentDigest(movie)
+        }
       }
-    }
 
-    const node = Object.assign({}, movie, nodeMeta)
-    createNode(node)
-  });
+      const node = Object.assign({}, movie, nodeMeta)
+      createNode(node)
+    });
+  }
 }
