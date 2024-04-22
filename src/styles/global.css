@@ -2,7 +2,7 @@ body {
   background-color: #f0e6f0;
   font-family: 'Comic Sans MS', cursive, sans-serif;
   color: #333;
-  padding: 125px 20px;
+  padding: 125px 0px;
   margin: 0;
 }
 
@@ -15,6 +15,11 @@ h1 {
   flex-wrap: wrap;
   justify-content: space-around;
   margin-top: 20px;
+}
+
+.pony {
+  text-align: center;
+  margin: 50px 0;
 }
 
 @keyframes blink {
@@ -31,7 +36,7 @@ h1 {
 header {
   background-color: #ffc0cb;
   color: #ffffff;
-  padding: 10px 20px;
+  padding: 10px 0px;
   text-align: center;
   overflow: hidden;
   position: fixed;
@@ -48,7 +53,11 @@ header h1 {
 }
 
 nav a {
-  margin: 0 15px;
+  margin-right: 15px;
+}
+
+nav a:last-child {
+  margin-right: 0;
 }
 
 footer {

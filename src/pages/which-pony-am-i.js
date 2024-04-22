@@ -4,14 +4,18 @@ import "../styles/global.css"
 
 const WhichPonyAmIPage = () => {
   const [pony, setPony] = useState(null);
+  const [ponyImage, setPonyImage] = useState(null);
 
   useEffect(() => {
-    // Function to fetch data
     const fetchData = async () => {
       try {
         const response = await fetch('/.netlify/functions/random-pony');
         const result = await response.json();
-        setPony(result);
+
+        setPony(result.name);
+        if (result.image && result.image.length > 0) {
+          setPonyImage(result.image[0]);
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -22,7 +26,10 @@ const WhichPonyAmIPage = () => {
 
   return (
     <Layout>
-      <h2>You are a horse. { pony.name }</h2>
+      <div className='pony'>
+        {pony ? <h2>You are {pony}.</h2> : <h2>Let me guess...</h2>}
+        {ponyImage && <img src={ponyImage} alt={pony} />}
+      </div>
     </Layout>
   )
 }
